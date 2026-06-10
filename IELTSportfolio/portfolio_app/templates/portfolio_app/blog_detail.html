@@ -1,0 +1,19 @@
+{% extends 'portfolio_app/base.html' %}
+
+{% block title %}{{ blog.title }} - Portfolio{% endblock %}
+
+{% block content %}
+<section>
+    <article class="blog-detail">
+        <h2>{{ blog.title }}</h2>
+        <p class="date">📅 Ngày đăng: {{ blog.published_date|date:"d/m/Y" }}</p>
+        {% if blog.excerpt %}
+        <p class="excerpt">{{ blog.excerpt }}</p>
+        {% endif %}
+        <div class="content">
+            {{ blog.content|linebreaks }}
+        </div>
+        <a href="{% url 'portfolio_app:blog_list' %}" class="back-link">← Quay lại danh sách blog</a>
+    </article>
+</section>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'portfolio_app/base.html' %}
+
+{% block title %}Kỹ năng & IELTS{% endblock %}
+
+{% block content %}
+<section>
+    <h3>💼 Kỹ năng</h3>
+    {% if skills %}
+    <div class="grid">
+        {% for skill in skills %}
+        <article class="card skill-card">
+            <h4>{{ skill.name }}</h4>
+            {% if skill.level %}
+            <p class="skill-level"><strong>Trình độ:</strong> {{ skill.level }}</p>
+            {% endif %}
+            {% if skill.description %}
+            <p>{{ skill.description }}</p>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p style="background: #f0f0f0; padding: 1rem; border-radius: 8px;">
+        Chưa có kỹ năng. 
+    </p>
+    {% endif %}
+</section>
+
+<section>
+    <h3>🎓 Trình độ IELTS</h3>
+    {% if ielts %}
+    <div class="grid skill-ratings">
+        <article class="card skill-card">
+            <h4>Listening</h4>
+            <p class="skill-level"><strong>{{ ielts.listening|floatformat:1 }}</strong> / 9.0</p>
+            <progress value="{{ ielts.listening }}" max="9"></progress>
+        </article>
+        <article class="card skill-card">
+            <h4>Reading</h4>
+            <p class="skill-level"><strong>{{ ielts.reading|floatformat:1 }}</strong> / 9.0</p>
+            <progress value="{{ ielts.reading }}" max="9"></progress>
+        </article>
+        <article class="card skill-card">
+            <h4>Writing</h4>
+            <p class="skill-level"><strong>{{ ielts.writing|floatformat:1 }}</strong> / 9.0</p>
+            <progress value="{{ ielts.writing }}" max="9"></progress>
+        </article>
+        <article class="card skill-card">
+            <h4>Speaking</h4>
+            <p class="skill-level"><strong>{{ ielts.speaking|floatformat:1 }}</strong> / 9.0</p>
+            <progress value="{{ ielts.speaking }}" max="9"></progress>
+        </article>
+    </div>
+
+    <div class="card average-card">
+        <h4>Band Score</h4>
+        <p class="skill-level"><strong>{{ ielts.average_score|floatformat:1 }}</strong> / 9.0</p>
+    </div>
+
+    {% else %}
+    <div class="card average-card">
+        <h4>Band Score</h4>
+        <p class="skill-level">Chưa có điểm</p>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'portfolio_app/base.html' %}
+{% load static %}
+
+{% block title %}Profile - Portfolio{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        {% if profile %}
+        <h2>{{ profile.full_name }}</h2>
+        <p class="subtitle">{{ profile.title }}</p>
+        <p class="bio">{{ profile.about }}</p>
+        <div class="contact-info">
+            <p><strong>🎂 Ngày sinh:</strong> {% if profile.birth_date %}{{ profile.birth_date }}{% else %}Chưa cập nhật{% endif %}</p>
+
+            <p><strong>⭐ Sở thích:</strong> {% if profile.interests %}{{ profile.interests }}{% else %}Chưa cập nhật{% endif %}</p>
+
+            <p><strong>📧 Email:</strong> <a href="mailto:{{ profile.email }}">{{ profile.email }}</a></p>
+
+            {% if profile.phone %}
+            <p><strong>📱 Điện thoại:</strong> {{ profile.phone }}</p>
+            {% endif %}
+            {% if profile.location %}
+            <p><strong>📍 Vị trí:</strong> {{ profile.location }}</p>
+            {% endif %}
+        </div>
+        {% else %}
+        <h2>Portfolio cá nhân của bạn</h2>
+        <p class="subtitle"></p>
+        <p class="bio">Chưa có thông tin hồ sơ.</p>
+        {% endif %}
+
+        {% if sent %}
+        <div class="alert alert-success" style="margin-top: 1.5rem;">
+            ✅ Cảm ơn bạn! Tin nhắn của bạn đã được gửi thành công.
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="hero-image">
+        {% if profile.photo %}
+            <img src="{{ profile.photo.url }}" alt="Ảnh đại diện" class="hero-image-img">
+        {% else %}
+            <img src="{% static 'portfolio_app/images/hero.jpg' %}?v=2" alt="Ảnh đại diện" class="hero-image-img">
+        {% endif %}
+    </div>
+
+</section>
+{% endblock %}

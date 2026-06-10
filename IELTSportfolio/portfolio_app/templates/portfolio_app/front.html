@@ -1,0 +1,19 @@
+{% extends 'portfolio_app/base.html' %}
+
+{% block title %}Front - Portfolio{% endblock %}
+
+{% block content %}
+<section class="front-hero">
+  <div class="container"></div>
+      <div class="hero-content">
+                <p class="hero-subtitle">Good Morning | Good Afternoon | Good Evening</p>
+                <h1 class="hero-title">Welcome To <span class="highlight">Trịnh Tuấn Kiệt</span> Portfolio</h1>
+                <p class="hero-description">Tôi sẽ cùng đi với bạn trên hành trình đạt điểm cao IELTS'.</p>
+                <div class="hero-buttons">
+                    <a href="https://canva.link/sg9yc3s127joia6" class="btn btn-primary">Xem Portfolio</a>
+                    <a href="{% url 'portfolio_app:contact' %}" class="btn btn-secondary">Liên Hệ Tôi</a>
+                </div>              
+            </div>
+</section>
+{% endblock %}
+

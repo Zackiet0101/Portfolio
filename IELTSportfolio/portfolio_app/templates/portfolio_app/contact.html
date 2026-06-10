@@ -1,0 +1,79 @@
+{% extends 'portfolio_app/base.html' %}
+
+{% block title %}Liên hệ - Portfolio{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+    <h2>📮 Liên hệ với tôi</h2>
+    <p class="page-intro">Bạn muốn trao đổi về cơ hội việc làm, hợp tác, hoặc chỉ muốn nói xin chào?</p>
+    <p class="page-intro">Hãy điền form bên dưới, tôi sẽ phản hồi sớm nhất có thể.</p>
+
+    {% if sent %}
+    <div class="alert alert-success">
+        ✅ <strong>Cảm ơn bạn!</strong> Tin nhắn của bạn đã được gửi thành công. Tôi sẽ liên lạc với bạn sớm.
+    </div>
+    {% endif %}
+
+    <form method="post" class="contact-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="name">Họ và tên <span class="required">*</span></label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                placeholder="Tên của bạn" 
+                required
+                class="form-input"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="your.email@example.com" 
+                required
+                class="form-input"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="subject">Tiêu đề <span class="required">*</span></label>
+            <input 
+                type="text" 
+                id="subject" 
+                name="subject" 
+                placeholder="Tiêu đề tin nhắn" 
+                required
+                class="form-input"
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="message">Nội dung tin nhắn <span class="required">*</span></label>
+            <textarea 
+                id="message" 
+                name="message" 
+                rows="8" 
+                placeholder="Viết tin nhắn của bạn tại đây..." 
+                required
+                class="form-input"
+            ></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">
+            ✉️ Gửi tin nhắn
+        </button>
+    </form>
+</section>
+
+<style>
+.required {
+    color: #dc2626;
+}
+</style>
+{% endblock %}

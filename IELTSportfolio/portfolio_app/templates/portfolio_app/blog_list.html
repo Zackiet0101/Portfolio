@@ -1,0 +1,31 @@
+{% extends 'portfolio_app/base.html' %}
+
+{% block title %}Blog - Portfolio{% endblock %}
+
+{% block content %}
+<section>
+    <h2>📝 Blog</h2>
+    <p class="page-intro">Những bài viết, kiến thức, và kinh nghiệm của tôi.</p>
+
+    {% if blogs %}
+    <div class="blog-list">
+        {% for blog in blogs %}
+        <article class="blog-item">
+            <h3>{{ blog.title }}</h3>
+            <p class="date">📅 Ngày đăng: {{ blog.published_date|date:"d/m/Y" }}</p>
+            {% if blog.excerpt %}
+            <p class="excerpt">{{ blog.excerpt }}</p>
+            {% endif %}
+            <a href="{% url 'portfolio_app:blog_detail' blog.pk %}" class="read-more">Đọc tiếp →</a>
+
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <p>Chưa có bài viết nào.</p>
+        <a href="/admin/portfolio_app/blogpost/">Viết bài mới</a>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
